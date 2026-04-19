@@ -1,0 +1,191 @@
+{
+  "features": {
+    "authentication": {
+      "name": "Authentication & Authorization",
+      "tests": [
+        "Check for weak password policies",
+        "Test for default credentials",
+        "Verify session management",
+        "Test for authentication bypass",
+        "Check for multi-factor authentication"
+      ],
+      "payloads": [
+        "admin:admin",
+        "root:root",
+        "test:test",
+        "guest:guest",
+        "' OR '1'='1",
+        "' OR 'x'='x",
+        "admin'--",
+        "' UNION SELECT * FROM users--"
+      ],
+      "explanations": [
+        "Authentication is the first line of defense against unauthorized access",
+        "Weak passwords can be easily cracked using brute force or dictionary attacks",
+        "Default credentials are often left unchanged and are a common vulnerability",
+        "Proper session management prevents session hijacking and fixation attacks"
+      ]
+    },
+    "authorization": {
+      "name": "Access Control",
+      "tests": [
+        "Test for privilege escalation",
+        "Check for broken access control",
+        "Verify role-based access control",
+        "Test for direct object references"
+      ],
+      "payloads": [
+        "../admin/",
+        "?role=admin",
+        "?user=admin",
+        "?id=1&admin=true"
+      ],
+      "explanations": [
+        "Authorization ensures users can only access resources they're permitted to",
+        "Broken access control can lead to unauthorized data access or modification",
+        "Privilege escalation allows low-privilege users to gain admin access"
+      ]
+    },
+    "session_management": {
+      "name": "Session Management",
+      "tests": [
+        "Check for session fixation",
+        "Test for session hijacking",
+        "Verify session timeout",
+        "Check for secure session storage"
+      ],
+      "payloads": [
+        "PHPSESSID=admin",
+        "JSESSIONID=admin",
+        "sessionid=admin123"
+      ],
+      "explanations": [
+        "Session management is crucial for maintaining user authentication state",
+        "Weak session tokens can be predicted or stolen by attackers",
+        "Proper session timeout prevents session hijacking attacks"
+      ]
+    },
+    "input_validation": {
+      "name": "Input Validation",
+      "tests": [
+        "Test for SQL injection",
+        "Check for XSS vulnerabilities",
+        "Test for command injection",
+        "Verify input sanitization"
+      ],
+      "payloads": [
+        "' OR '1'='1",
+        "<script>alert('XSS')</script>",
+        "; ls -la",
+        "../../etc/passwd",
+        "null",
+        "undefined",
+        "{{7*7}}",
+        "${7*7}"
+      ],
+      "explanations": [
+        "Input validation prevents malicious data from being processed by the application",
+        "SQL injection can lead to database compromise and data theft",
+        "XSS attacks can steal user cookies and session information",
+        "Command injection can allow attackers to execute system commands"
+      ]
+    },
+    "file_upload": {
+      "name": "File Upload Security",
+      "tests": [
+        "Test for malicious file upload",
+        "Check for file type validation",
+        "Verify file size limits",
+        "Test for path traversal"
+      ],
+      "payloads": [
+        "shell.php",
+        "webshell.jsp",
+        "../../etc/passwd",
+        "test.exe",
+        "malicious.js"
+      ],
+      "explanations": [
+        "File upload vulnerabilities can allow attackers to upload malicious files",
+        "Proper file type validation prevents execution of dangerous file types",
+        "Path traversal can allow access to sensitive files outside the upload directory"
+      ]
+    },
+    "api_security": {
+      "name": "API Security",
+      "tests": [
+        "Test for API authentication",
+        "Check for rate limiting",
+        "Verify input validation",
+        "Test for data exposure"
+      ],
+      "payloads": [
+        "Bearer token",
+        "API key test",
+        "?limit=1000",
+        "?id=1&format=json"
+      ],
+      "explanations": [
+        "APIs need proper authentication to prevent unauthorized access",
+        "Rate limiting prevents API abuse and denial of service attacks",
+        "Proper input validation prevents injection attacks through APIs"
+      ]
+    },
+    "error_handling": {
+      "name": "Error Handling",
+      "tests": [
+        "Check for information disclosure",
+        "Test for custom error pages",
+        "Verify error logging",
+        "Test for exception handling"
+      ],
+      "payloads": [
+        "nonexistent_page",
+        "invalid_parameter",
+        "null_value",
+        "undefined_value"
+      ],
+      "explanations": [
+        "Proper error handling prevents information disclosure to attackers",
+        "Custom error pages improve user experience and security",
+        "Error logging helps in detecting and investigating security incidents"
+      ]
+    },
+    "logging": {
+      "name": "Security Logging",
+      "tests": [
+        "Check for security event logging",
+        "Verify log protection",
+        "Test for log tampering",
+        "Check for log monitoring"
+      ],
+      "payloads": [
+        "admin_login",
+        "failed_login",
+        "privilege_escalation",
+        "data_access"
+      ],
+      "explanations": [
+        "Security logging is essential for detecting and investigating security incidents",
+        "Logs should be protected against tampering and unauthorized access",
+        "Proper log monitoring helps in early detection of security breaches"
+      ]
+    }
+  },
+  "risk_levels": {
+    "critical": "Immediate action required - System compromise likely",
+    "high": "Urgent attention needed - Significant security risk",
+    "medium": "Should be addressed - Moderate security risk",
+    "low": "Can be scheduled - Minor security issue"
+  },
+  "categories": {
+    "injection": "SQL injection, Command injection, LDAP injection",
+    "authentication": "Login issues, Session management, Access control",
+    "sensitive_data": "Data exposure, Encryption issues, Privacy violations",
+    "broken_access": "Authorization bypass, Privilege escalation",
+    "security_misconfig": "Default credentials, Unnecessary services",
+    "vulnerable_components": "Outdated libraries, Known vulnerabilities",
+    "xss": "Cross-site scripting, Content injection",
+    "file_inclusion": "LFI/RFI, Path traversal"
+  }
+}

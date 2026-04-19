@@ -1,0 +1,21 @@
+{
+  "name": "SecNova - Guided Web Security Testing Tool",
+  "short_name": "SecNova",
+  "description": "SecNova helps beginners learn web security testing with guided checklists, payloads, and explanations.",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#FF3B3B",
+  "background_color": "#0A0A0A"
+}

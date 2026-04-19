@@ -11,11 +11,17 @@ interface OutputPanelProps {
   };
   scanResult: {
     headers: {
-      csp: boolean;
-      x_frame: boolean;
-      hsts: boolean;
-      x_content_type_options: boolean;
-      referrer_policy: boolean;
+      [key: string]: string;
+      'content-security-policy'?: string;
+      'strict-transport-security'?: string;
+      'x-frame-options'?: string;
+      'x-content-type-options'?: string;
+      'referrer-policy'?: string;
+      'permissions-policy'?: string;
+      'x-xss-protection'?: string;
+      'cache-control'?: string;
+      'server'?: string;
+      'x-powered-by'?: string;
     };
     issues: string[];
     server: string;

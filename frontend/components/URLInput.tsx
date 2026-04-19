@@ -41,7 +41,8 @@ export default function URLInput({ onScanComplete, setLoading }: URLInputProps) 
     setLoading(true);
 
     try {
-      const response = await axios.post('/api/scan', { url });
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sec-nova-x9sv.vercel.app';
+      const response = await axios.post(`${API_URL}/api/scan`, { url });
       onScanComplete(response.data);
     } catch (err) {
       setError('Failed to scan the URL. Please try again.');

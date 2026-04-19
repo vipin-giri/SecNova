@@ -56,7 +56,8 @@ export default function FeatureSelector({
     onFeaturesSelected(selectedFeatures);
 
     try {
-      const response = await axios.post('/api/analyze', { features: selectedFeatures });
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://sec-nova-x9sv.vercel.app';
+      const response = await axios.post(`${API_URL}/api/analyze`, { features: selectedFeatures });
       onAnalysisComplete(response.data);
     } catch (err) {
       setError('Failed to analyze features. Please try again.');
